@@ -1,0 +1,33 @@
+:root {
+  --button-color: cyan;
+  --button-color_hover: white;
+}
+
+body {
+  background-color: #222;
+  color: #CCC;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.midi-link {
+  border: 1px solid var(--button-color);
+  color: var(--button-color);
+  padding: 1rem;
+  text-decoration: none;
+}
+
+.midi-link:hover {
+  border: 1px solid var(--button-color_hover);
+  color: var(--button-color_hover);
+}

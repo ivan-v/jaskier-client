@@ -1,0 +1,24 @@
+{
+  "name": "jaskier-client",
+  "version": "1.0.0",
+  "description": "Web-based interface to Modern Bard",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "reload",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffs/jaskier-client.git"
+  },
+  "author": "Jeff Schwab and Ivan Viro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffs/jaskier-client/issues"
+  },
+  "homepage": "https://github.com/jeffs/jaskier-client#readme",
+  "devDependencies": {
+    "reload": "^3.1.0"
+  }
+}
