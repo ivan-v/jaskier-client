@@ -5,6 +5,7 @@
   "private": true,
   "main": "main.js",
   "scripts": {
+    "start": "reload",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/jeffs/jaskier-client/issues"
   },
-  "homepage": "https://github.com/jeffs/jaskier-client#readme"
+  "homepage": "https://github.com/jeffs/jaskier-client#readme",
+  "devDependencies": {
+    "reload": "^3.1.0"
+  }
 }
