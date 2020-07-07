@@ -31,3 +31,20 @@ h2 {
   border: 1px solid var(--button-color_hover);
   color: var(--button-color_hover);
 }
+
+
+.playpause label { display: block; box-sizing: border-box; width: 0; height: 74px; border-color: transparent transparent transparent #202020; transition: 100ms all ease; cursor: pointer; border-style: double; border-width: 0px 0 0px 60px;} .playpause input[type="checkbox"] { visibility: hidden; } .playpause input[type="checkbox"]:checked + label { border-style: solid; border-width: 37px 0 37px 60px; } 
+.playpause{
+    border:8px solid #000;
+    border-radius:50%;
+    height:150px;
+    width:150px;
+    text-align:center;
+    position:relative;
+    background-color:#404040;
+}
+label{
+    position:absolute ;
+    left:45px;
+    top:35px;
+}

@@ -3,11 +3,42 @@
   <head>
     <meta charset="UTF-8">
     <title>Modern Bard</title>
+    <script type='text/javascript' src='https://www.midijs.net/lib/midi.js'></script>
     <script src="main.js" type="module"></script>
     <link href="style.css" rel="stylesheet">
   </head>
   <body>
     <h1>The Modernest of Bards</title>
     <h2>and the classickest of MIDIs</h2>
+    <div id="wrapper">
+          <div class="playpause">
+          <input type="checkbox" id="playpause" name="check" value="0" onclick="value =play_button_click(value);"/>
+          <label for="playpause">
+          </label>
+          <script>
+          function play_button_click(value) {
+            if (value === "0") {
+              MIDIjs.play('http://localhost:8013/');
+              return "2";
+            } else if (value == "1") {
+              MIDIjs.resume()
+              return "2";
+            } else {
+              MIDIjs.pause()
+              return "1";
+            }
+          }
+        </script>
+
+    </div>
+    <form action="/">
+    <label for="chord progression">Select a chord progression:</label>
+      <select id="chord progressions" name="chord progressions">
+      <option value="Simple">Simple</option>
+      <option value="Jazzy">Jazzy</option>
+      <option value="Coltrane">Coltrane</option>
+    </select>
+    <input type="submit">
+    </form>
   </body>
 </html>
