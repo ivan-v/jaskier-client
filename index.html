@@ -7,39 +7,212 @@
     <script src="main.js" type="module"></script>
     <link href="style.css" rel="stylesheet">
     <link rel= "shortcut icon" rel="image/png" href="/favoriteicon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Create three equal columns that float next to each other */
+    .column {
+      float: left;
+      width: 33.33%;
+      padding: 10px;
+      /*height: 500px;*/
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+      }
+    }
+  </style>
   </head>
   <body>
-    <h1>The Modernest of Bards</title>
-    <h2>and the classickest of MIDIs</h2>
+    <h1>The Modern Bard</title>
+    <h2>Computer-generated Music</h2>
+
     <div id="wrapper">
           <div class="playpause">
-          <input type="checkbox" id="playpause" name="check" value="0" onclick="value =play_button_click(value);"/>
+          <input type="checkbox" id="playpause" value="0">
           <label for="playpause">
           </label>
-          <script>
-          function play_button_click(value) {
-            if (value === "0") {
-              MIDIjs.play('http://localhost:8013/');
-              return "2";
-            } else if (value == "1") {
-              MIDIjs.resume()
-              return "2";
-            } else {
-              MIDIjs.pause()
-              return "1";
-            }
-          }
-        </script>
-
+          </div>
     </div>
-    <form action="/">
-    <label for="chord progression">Select a chord progression:</label>
-      <select id="chord progressions" name="chord progressions">
-      <option value="Simple">Simple</option>
-      <option value="Jazzy">Jazzy</option>
-      <option value="Coltrane">Coltrane</option>
-    </select>
-    <input type="submit">
+    <body>
+
+     <p style='display: inline'>Level of Detail:</p>
+     <p class="detail_level" id="detail_level" style='display: inline'>detail.value</p>
+     <form>
+      <input type="range" class="detail" id="detail" name="detail" min="1" max="3">
+    </form> 
+
+
+    <div class="row">
+      <div class="column" style="background-color:#3f659f;">
+        <h2>Generate a chord progression</h2>
+        <form action="/" id="chord_gen_form">
+         <h3 style='display: inline'>Form:</h3>
+          <select id="chord progressions" class="form-selection">
+            <option value="Simple">Simple</option>
+            <option value="Jazzy">Jazzy</option>
+            <option value="Coltrane">Coltrane</option>
+          </select><br>
+        <h3 style='display: inline' >Key:</h3>
+        <select id="key" name="key" class="form-selection">
+          <option value="C (B#)">C (B#)</option>
+          <option value="C# / Db">C# / Db</option>
+          <option value="D">D</option>
+          <option value="D# / Eb">D# / Eb</option>
+          <option value="E (Fb)">E (Fb)</option>
+          <option value="F (E#)">F (E#)</option>
+          <option value="F# / Gb">F# / Gb</option>
+          <option value="G">G</option>
+          <option value="G# / Ab">G# / Ab</option>
+          <option value="A">A</option>
+          <option value="A# / Bb">A# / Bb</option>
+          <option value="B (Cb)">B (Cb)</option>
+        </select> <br>
+        <h3 id="scale_label" class= "scale_label" style='visibility: visible; display: inline;'> Scale: </h3>
+        <select id="scale" class="result" style='visibility: visible; display: inline;'>
+          <option value="Major (Ionian)">Major (Ionian)</option>
+          <option value="Minor (Aeolian)"> Minor (Aeolian)</option>
+          <option value="Lydian">Lydian</option>
+          <option value="Dorian">Dorian</option>
+          <option value="Phrygian">Phrygian</option>
+          <option value="Dorian">Dorian</option>
+          <option value="Mixolydian">Mixolydian</option>
+          <option value="Alaska">Alaska</option>
+          <option value="Jewish">Jewsih</option>
+          <option value="India">India</option>
+          <option value="Spain">Spain</option>
+          <option value="Asian-Bartok">Asian-Bartok</option>
+          <option value="Hungarian-Bartok">Hungarian-Bartok</option>
+          <option value="Pentatonic">Pentatonic</option>
+          <option value="Blues">Blues</option>
+          <option value="Japan">Japan</option>
+          <option value="Peru">Peru</option>
+          <option value="Slavic">Slavic</option>
+        </select><br>
+        <h3 class="medium"><br> Repetitions of each chord before the next </h3>
+        <input type="text" class="form-entry medium" id="repetitions of each chord" min="1" max="99" style='display: inline'>
+        <h3 style='display: inline'><br><br>Repetitions of sequence:</h3>
+        <input type="text" class="form-entry" id="chord repetitions" value="2" min="1" max="99" style='display: inline'><br><br>
+        <button class="form-button" type="generate_chords_by_settings" name="submit" class="learn-more">Generate Chord Progression</button>
+        </form>
+
+      </div>
+      <div class="column" style="background-color:#7d7d7d;">
+        <h2>Song Generator</h2>
+        <form id="song_gen_form">
+        <h3 style="display: inline;">Key:</h3>
+        <select id="Key" name="key" class="form-selection">
+          <option value="C (B#)">C (B#)</option>
+          <option value="C# / Db">C# / Db</option>
+          <option value="D">D</option>
+          <option value="D# / Eb">D# / Eb</option>
+          <option value="E (Fb)">E (Fb)</option>
+          <option value="F (E#)">F (E#)</option>
+          <option value="F# / Gb">F# / Gb</option>
+          <option value="G">G</option>
+          <option value="G# / Ab">G# / Ab</option>
+          <option value="A">A</option>
+          <option value="A# / Bb">A# / Bb</option>
+          <option value="B (Cb)">B (Cb)</option>
+        </select> <br>
+        <h3 style="display: inline;"> Scale: </h3>
+        <select id="Scale" name="scale" class="form-selection" style='display: inline;'>
+          <option value="Major (Ionian)">Major (Ionian)</option>
+          <option value="Minor (Aeolian)"> Minor (Aeolian)</option>
+          <option value="Lydian">Lydian</option>
+          <option value="Dorian">Dorian</option>
+          <option value="Phrygian">Phrygian</option>
+          <option value="Dorian">Dorian</option>
+          <option value="Mixolydian">Mixolydian</option>
+          <option value="Alaska">Alaska</option>
+          <option value="Jewish">Jewsih</option>
+          <option value="India">India</option>
+          <option value="Spain">Spain</option>
+          <option value="Asian-Bartok">Asian-Bartok</option>
+          <option value="Hungarian-Bartok">Hungarian-Bartok</option>
+          <option value="Pentatonic">Pentatonic</option>
+          <option value="Blues">Blues</option>
+          <option value="Japan">Japan</option>
+          <option value="Peru">Peru</option>
+          <option value="Slavic">Slavic</option>
+        </select>
+        <h3 style="display: inline"><br>Meter:</h3>
+        <select class="form-selection" name="meter" style="display: inline">
+          <option value="(4,4)">(4,4)</option>
+          <option value="(3,4)">(3,4)</option>
+          <option value="(2,4)">(2,4)</option>
+          <option value="(1,4)">(1,4)</option>
+          <option value="(5,4)">(5,4)</option>
+          <option value="(6,4)">(6,4)</option>
+          <option value="(3,8)">(3,8)</option>
+          <option value="(5,8)">(5,8)</option>
+          <option value="(6,8)">(6,8)</option>
+          <option value="(7,8)">(7,8)</option>
+          <option value="(9,8)">(9,8)</option>
+          <option value="(12,8)">(12,8)</option>
+        </select>
+        <h3 class="medium" style="display: inline;"> <br>Form:</h3>
+        <select class="form-selection medium" name="form" style='display: inline'>
+          <option value="One-part">One-part</option>
+          <option value="Binary">Binary</option>
+          <option value="Ternary">Ternary</option>
+          <option value="Arch">Arch</option>
+          <option value="Sonata">Sonata</option>
+          <option value="Ballad #1" selected>Ballad #1</option>
+          <option value="Ballad #2">Ballad #2</option>
+          <option value="Ballad #3">Ballad #3</option>
+          <option value="Ballad #4">Ballad #4</option>
+          <option value="Ballad #5">Ballad #5</option>
+          <option value="Rondo">Rondo</option>
+          <option value="Verse-Chorus"></option>
+        </select>
+        <h3 class="medium"> <br><br>Rhythm intensity, from calm to intense: </h3>
+        <input type="range" class="detail medium" id="beat intensity" name="rhythm_pdf" min="0" max="10" style="display: inline;">
+        <h3 class="medium"><br><br> # of simultaneous supporting motions: </h3>
+        <select id="number_of_hand_motions" class="medium form-selection" name="num_hands" style='display: inline'>
+          <option value="Only Melody">Only Melody</option>
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <h3 class="pro" style='display: none;'> <br><br>Max difference in adjacent notes, in # of halfsteps: </h3>
+        <input type="text" class="form-entry pro" name="max_step_size" id="max step size" min="1" max="24" value="13" style='display: none;'>
+        <h3 class="pro" style='display: none;'> <br><br>Range of pitches in melody, in # of halfsteps: </h3>
+        <input type="text" class="form-entry pro" name="pitch_range" id="pitch range mel" min="1" max="50" value="17" style='display: none;'>
+        <h3 class="pro" style='display: none;'><br><br> # of repetitions of rhythm in melody: </h3>
+        <input type="text" class="form-entry pro" name="rhythm_repetition_in_mel" id="rhythm_repetition_in_mel" min="0" max="99" value="2" style='display: none'>
+        <h3 class="pro" style='display: none;'> <br><br>: # of repetitions per :</h3>
+        <input type="text" class="form-entry pro" name="repetitions_in_part" id="repetitions_in_part" min="0" max="99" style='display: none' value="1">
+        <h3 class="pro" style='display: none;'> <br><br># of repetitions of chord progression per part: </h3>
+        <input type="text" class="form-entry pro" name="repeat_chord_progression_in_part" id="repeat_chord_progression_in_part" value="0" min="0" max="99" style='display: none'>
+        <h3 class="pro" style='display: none;'><br><br> Slight Jazziness (presense of 7th chords): </h3>
+        <input type="range" class="detail pro" value="0" name="jazziness" id="jazziness" min="0" max="5" style='display: none;'>
+        <h3 class="pro" style='display: none;'><br><br> Tempo: </h3>
+        <input type="range" class="detail pro" value="120" id="tempo" name="tempo" min="75" max="170" style='display: none;'>
+      <br><br>
+      <button class="form-button" type="submit" id="submit_song_gen">Apply Settings</button>
     </form>
+    </h3>
+      </div>
+      <div class="column" style="background-color:#599b;">
+        <h2>Jazz Improviser</h2>
+        <h3>What chords to use?</h3>
+      </div>
+    </div>
+
+    </body>
+
   </body>
 </html>
