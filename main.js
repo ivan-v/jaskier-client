@@ -2,7 +2,7 @@ function main() {
     const a = document.createElement('a');
     a.append('Download the MIDI file');
     //a.href = 'https://modern-bard.uk.r.appspot.com/';
-    a.href = 'http://localhost:8013/';
+    a.href = 'modern-bard.appspot.com';
     a.classList.add('midi-link');
 
     document.body.append(a);
@@ -68,9 +68,9 @@ function main() {
     const localstorage_url = localStorage.getItem("midi_url");
 
     if (localstorage_url === null) {
-        var midi_url = "http://localhost:8013/";
+        var midi_url = "modern-bard.appspot.com/";
     } else if (localstorage_url.charAt(31) === "?") {
-        var midi_url = "http://localhost:8013/song";
+        var midi_url = "modern-bard.appspot.com/song";
     } else {
         var midi_url = localStorage.getItem("midi_url");
     }
@@ -99,7 +99,7 @@ function main() {
         const form_details = url.replace('?', '');
         const play_button_id = document.getElementById("playpause");
 
-        var midi_url = "http://localhost:8013/song_gen?" + form_details;
+        var midi_url = "modern-bard.appspot.com/song_gen?" + form_details;
         localStorage.setItem("midi_url", midi_url);
     });
 
