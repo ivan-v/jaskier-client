@@ -70,10 +70,23 @@ function main() {
     if (localstorage_url === null) {
         var midi_url = "https://modern-bard.appspot.com/";
     } else if (localstorage_url.charAt(31) === "?") {
-        var midi_url = "https://modern-bard.appspot.com/song";
+        var midi_url = "https://modern-bard.appspot.com/song/";
     } else {
-        var midi_url = localStorage.getItem("midi_url");
+        const url = window.location.search;
+        const form_details = url.replace('?', '');
+        var midi_url = "https://modern-bard.appspot.com/song_gen?" + form_details;
+        localStorage.setItem("midi_url", midi_url);;
     }
+
+
+    const url = window.location.search;
+    const form_details = url.replace('?', '');
+    const params = new URLSearchParams(form_details)
+    params.forEach(function(val, key) {
+        let key_id = document.getElementsByName(key)[0];
+        key_id.value = val;
+    });
+
 
     console.log(midi_url)
 
