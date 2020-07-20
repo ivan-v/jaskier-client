@@ -88,12 +88,13 @@ function main() {
     });
 
 
-    console.log(midi_url)
-    MIDIjs.play(midi_url);
-    MIDIjs.pause()
 
     // MIDI.js logic for the play/pause button
     const play_button_id = document.getElementById("playpause");
+    console.log(midi_url)
+    MIDIjs.play(midi_url);
+    MIDIjs.pause()
+    play_button_id.value = "1";
     play_button_id.addEventListener("change", (event) => {
         console.log(midi_url)
         if (play_button_id.value === "0") {
