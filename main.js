@@ -1,11 +1,5 @@
 function main() {
-    const a = document.createElement('a');
-    a.append('Download the MIDI file');
-    //a.href = 'https://modern-bard.uk.r.appspot.com/';
-    a.href = 'https://modern-bard.appspot.com/';
-    a.classList.add('midi-link');
 
-    document.body.append(a);
     const element = document.getElementById('chord progressions');
 
     const play_button = document.getElementById('playpause');
@@ -118,6 +112,14 @@ function main() {
         var midi_url = "https://modern-bard.appspot.com/song_gen?" + form_details;
         localStorage.setItem("midi_url", midi_url);
     });
+
+    const a = document.createElement('a');
+    a.append('Download the MIDI file');
+    //a.href = 'https://modern-bard.uk.r.appspot.com/';
+    a.href = midi_url;
+    a.classList.add('midi-link');
+
+    document.body.append(a);
 
 }
 
