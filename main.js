@@ -116,7 +116,7 @@ function main() {
     const a = document.createElement('a');
     a.append('Download the MIDI file');
     //a.href = 'https://modern-bard.uk.r.appspot.com/';
-    a.href = midi_url;
+    a.href = "https://modern-bard.appspot.com/song.midi";
     a.classList.add('midi-link');
 
     document.body.append(a);
