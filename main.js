@@ -62,13 +62,13 @@ function main() {
     const localstorage_url = localStorage.getItem("midi_url");
 
     if (localstorage_url === null) {
-        var midi_url = "https://modern-bard.appspot.com/";
+        var midi_url = "https://modern-bard.uk.r.appspot.com/";
     } else if (localstorage_url.charAt(31) === "?") {
-        var midi_url = "https://modern-bard.appspot.com/song/";
+        var midi_url = "https://modern-bard.uk.r.appspot.com/song/";
     } else {
         const url = window.location.search;
         const form_details = url.replace('?', '');
-        var midi_url = "https://modern-bard.appspot.com/song_gen?" + form_details;
+        var midi_url = "https://modern-bard.uk.r.appspot.com/?" + form_details;
         localStorage.setItem("midi_url", midi_url);;
     }
 
@@ -87,7 +87,27 @@ function main() {
     const play_button_id = document.getElementById("playpause");
     console.log(midi_url)
     MIDIjs.play(midi_url);
+
+
+
+    const my_message_div = document.getElementById("status");
+    // const content = my_message_div.innerHTML 
+
+    // Define a function to handle status messages
+    function display_message(mes) {
+        if (mes.includes("Loading")) {
+            my_message_div.innerHTML = "Loading...";
+        } else {
+            my_message_div.innerHTML = "Ready to play";
+        }
+    };
+
+    // Set the function as message callback
+    MIDIjs.message_callback = display_message;
+
+
     MIDIjs.pause()
+
     play_button_id.value = "1";
     play_button_id.addEventListener("change", (event) => {
         console.log(midi_url)
@@ -109,14 +129,14 @@ function main() {
         const form_details = url.replace('?', '');
         const play_button_id = document.getElementById("playpause");
 
-        var midi_url = "https://modern-bard.appspot.com/song_gen?" + form_details;
+        var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
         localStorage.setItem("midi_url", midi_url);
     });
 
     const a = document.createElement('a');
     a.append('Download the MIDI file');
     //a.href = 'https://modern-bard.uk.r.appspot.com/';
-    a.href = "https://modern-bard.appspot.com/song.midi";
+    a.href = "https://modern-bard.uk.r.appspot.com/song?";
     a.classList.add('midi-link');
 
     document.body.append(a);

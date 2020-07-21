@@ -46,9 +46,10 @@
           </label>
           </div>
     </div>
-    <body>
 
-     <p style='display: inline'>Level of Detail:</p>
+    <h3 id="status">Status: </h3>
+
+     <h3 style='display: inline'>Level of Detail:</h3>
      <p class="detail_level" id="detail_level" style='display: inline'>detail.value</p>
      <form>
       <input type="range" class="detail" id="detail" name="detail" min="1" max="3">
@@ -178,14 +179,161 @@
           <option value="Rondo">Rondo</option>
           <option value="Verse-Chorus"></option>
         </select>
-        <h3 class="medium" style="display: inline"><br>Instrument:</h3>
-        <select class="form-selection medium" name="instrument" style="display: inline">
-          <option value="0">Acoustic Grand Piano</option>
-          <option value="38">Marimba</option>
+        <h3 class="" style="display: inline"><br>Instrument:</h3>
+        <select class="form-selection" name="instrument" style="display: inline">
+          <optgroup label="Piano">
+            <option value="0">Acoustic Grand Piano</option>
+            <option value="1">Bright Acoustic Piano</option>
+            <option value="2">Electric Grand Piano</option>
+            <option value="3">Honky-tonk Piano</option>
+            <option value="4">Electric Piano 1</option>
+            <option value="5">Electric Piano 2</option>
+            <option value="6">Harpsichord</option>
+            <option value="7">Clavi</option>
+          </optgroup>
+          <optgroup label="Chromatic Percussion">
+            <option value="8">Celesta</option>
+            <option value="9">Glokenspiel</option>
+            <option value="10">Music Box</option>
+            <option value="11">Vibraphone</option>
+            <option value="12">Marimba</option>
+            <option value="13">Xylophone</option>
+            <option value="14">Tubular Bells</option>
+            <option value="15">Dulcimer</option>
+          </optgroup>
+          <optgroup label="Organ">
+            <option value="16">Drawbar Organ</option>
+            <option value="17">Percussive Organ</option>
+            <option value="18">Rock Organ</option>
+            <option value="19">Church Organ</option>
+            <option value="20">Reed Organ</option>
+            <option value="21">Accordion</option>
+            <option value="22">Harmonica</option>
+            <option value="23">Tango Accordion</option>
+          </optgroup>
+          <optgroup label="Guitar">
+            <option value="24">Acoustic Guitar (nylon)</option>
+            <option value="25">Acoustic Guitar (steel)</option>
+            <option value="26">Electric Guitar (jazz)</option>
+            <option value="27">Electric Guitar (clean)</option>
+            <option value="28">Electric Guitar (muted)</option>
+            <option value="29">Overdriven Guitar</option>
+            <option value="30">Distortion Guitar</option>
+          </optgroup>
+          <optgroup label="Bass">
+            <option value="32">Acoustic Bass</option>
+            <option value="33">Electric Bass (finger)</option>
+            <option value="34">Electric Bass (pick)</option>
+            <option value="35">Fretless Bass</option>
+            <option value="36">Slap Bass 1</option>
+            <option value="37">Slap Bass 2</option>
+            <option value="38">Synth Bass 1</option>
+            <option value="39">Synth Bass 2</option>
+          </optgroup>
+          <optgroup label="Strings">
+            <option value="40">Violin</option>
+            <option value="41">Viola</option>
+            <option value="42">Cello</option>
+            <option value="43">Contrabass</option>
+            <option value="44">Tremolo Strings</option>
+            <option value="45">Pizzicato Strings</option>
+            <option value="46">Harp</option>
+            <option value="47">Timpani</option>
+          </optgroup>
+          <optgroup label="Ensemble">
+            <option value="48">String Ensemble 1</option>
+            <option value="49">String Ensemble 2</option>
+            <option value="50">Synth Strings 1</option>
+            <option value="51">Synth Strings 2</option>
+            <option value="52">Choir Aahs</option>
+            <option value="53">Voice Oohs</option>
+            <option value="54">Synth Voice</option>
+            <option value="55">Orchestral Hit</option>
+          </optgroup>
+          <optgroup label="Brass">
+            <option value="56">Trumpet</option>
+            <option value="57">Trombone</option>
+            <option value="58">Tuba</option>
+            <option value="59">Muted Trumpet</option>
+            <option value="60">French Horn</option>
+            <option value="61">Brass Section</option>
+            <option value="62">Synth Brass 1</option>
+            <option value="63">Synth Brass 2</option>
+          </optgroup>
+          <optgroup label="Reed">
+            <option value="64">Soprano Sax</option>
+            <option value="65">Alto Sax</option>
+            <option value="66">Tenor Sax</option>
+            <option value="67">Baritone Sax</option>
+            <option value="68">Oboe</option>
+            <option value="69">English Horn</option>
+            <option value="70">Bassoon</option>
+            <option value="71">Clarinet</option>
+          </optgroup>
+          <optgroup label="Pipe">
+            <option value="72">Piccolo</option>
+            <option value="73">Flute</option>
+            <option value="74">Recorder</option>
+            <option value="75">Pan Flute</option>
+            <option value="76">Blown Bottle</option>
+            <option value="77">Shakuhachi</option>
+            <option value="78">Whistle</option>
+            <option value="79">Ocarina</option>
+          </optgroup>
+          <optgroup label="Synth Lead">
+            <option value="80">Lead 1 (square)</option>
+            <option value="81">Lead 2 (sawtooth)</option>
+            <option value="82">Lead 3 (calliope)</option>
+            <option value="83">Lead 4 (chiff)</option>
+            <option value="84">Lead 5 (charang)</option>
+            <option value="85">Lead 6 (voice)</option>
+            <option value="86">Lead 7 (fifths)</option>
+            <option value="87">Lead 8 (bass + lead)</option>
+          </optgroup>
+          <optgroup label="Synth Pad">
+            <option value="88">Pad 1 (new age)</option>
+            <option value="89">Pad 2 (warm)</option>
+            <option value="90">Pad 3 (polysynth)</option>
+            <option value="91">Pad 4 (choir)</option>
+            <option value="92">Pad 5 (bowed)</option>
+            <option value="93">Pad 6 (metallic)</option>
+            <option value="94">Pad 7 (halo)</option>
+            <option value="95">Pad 8 (sweep)</option>
+          </optgroup>
+          <optgroup label="Synth Effects">
+            <option value="97">Soundtrack</option>
+            <option value="99">Atmosphere</option>
+            <option value="100">Brightness</option>
+            <option value="102">Echoes</option>
+            <option value="103">Sci-fi</option>
+          </optgroup>
+          <optgroup label="Ethnic">
+            <option value="104">Sitar</option>
+            <option value="105">Banjo</option>
+            <option value="106">Shamisen</option>
+            <option value="107">Koto</option>
+            <option value="108">Kalimba</option>
+            <option value="111">Shanai</option>
+          </optgroup>
+          <optgroup label="Percussive">
+            <option value="112">Tinkle Bell</option>
+            <option value="113">Agogo</option>
+            <option value="114">Steel Drums</option>
+            <option value="115">Woodblock</option>
+            <option value="116">Taiko Drum</option>
+            <option value="117">Melodic Tom</option>
+            <option value="118">Synth Drum</option>
+          </optgroup>
+          <optgroup label="Sound Effects">
+            <option value="120">Fret Scratch</option>
+            <option value="121">Breath</option>
+            <option value="122">Seashore</option>
+            <option value="123">Bird Tweet</option>
+          </optgroup>
         </select>
         <h3 class="medium"> <br><br>Rhythm intensity, from calm to intense: </h3>
         <input type="range" class="detail medium" id="beat intensity" name="rhythm_pdf" min="0" max="10" style="display: inline;">
-        <h3 class="medium"><br><br> # of simultaneous supporting motions: </h3>
+        <h3 class="medium"><br><br> Max # of simultaneous harmonies: </h3>
         <select id="number_of_hand_motions" class="medium form-selection" name="num_hands" style='display: inline'>
           <option value="Only Melody">Only Melody</option>
           <option value="1" selected>1</option>
