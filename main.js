@@ -68,7 +68,7 @@ function main() {
     } else {
         const url = window.location.search;
         const form_details = url.replace('?', '');
-        var midi_url = "https://modern-bard.uk.r.appspot.com/?" + form_details;
+        var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
         localStorage.setItem("midi_url", midi_url);;
     }
 
