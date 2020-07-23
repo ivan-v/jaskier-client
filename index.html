@@ -35,22 +35,36 @@
     }
   </style>
   </head>
+  <nav role="navigation" class="primary-navigation">
+  <ul>
+    <li><a href="https://virtualbard.com/">Home</a></li>
+    <li><a href="#">Individual Tools &dtrif;</a>
+      <ul class="dropdown">
+        <li><a href="/song_generator">Song Generator</a></li>
+        <li><a href="#">Chord Generator</a></li>
+        <li><a href="#">Jazz Imrpoviser</a></li>
+      </ul>
+    </li>
+    <li><a href="about">About</a></li>
+    <li><a href="#" class="rightmost-navigation">Contact&nbsp; &nbsp; &nbsp; &nbsp;</a></li>
+  </ul>
+  </nav>
   <body>
     <h1>Virtual Bard</title>
     <h2>Computer-generated Music</h2>
 
     <div id="wrapper">
-          <div class="playpause">
-          <input type="checkbox" id="playpause" value="1">
-          <label for="playpause">
-          </label>
-          </div>
+      <div class="playpause">
+      <input type="checkbox" id="playpause" value="1">
+      <label for="playpause">
+      </label>
+      </div>
     </div>
 
     <h3 id="status">Status: </h3>
 
-     <h3 style='display: inline'>Level of Detail:</h3>
-     <p class="detail_level" id="detail_level" style='display: inline'>detail.value</p>
+     <h3 style='display: inline; margin-bottom: -10px;'>Level of Detail:</h3>
+     <p class="detail_level" id="detail_level" style='text-align: center;'></p>
      <form>
       <input type="range" class="detail" id="detail" name="detail" min="1" max="3">
     </form> 
@@ -103,7 +117,7 @@
           <option value="Slavic">Slavic</option>
         </select><br>
         <h3 class="medium"><br> Repetitions of each chord before the next </h3>
-        <input type="text" class="form-entry medium" id="repetitions of each chord" min="1" max="99" style='display: inline'>
+        <input type="text" value="0" class="form-entry medium" id="repetitions of each chord" min="0" max="99" style='display: inline'>
         <h3 style='display: inline'><br><br>Repetitions of sequence:</h3>
         <input type="text" class="form-entry" id="chord repetitions" value="2" min="1" max="99" style='display: inline'><br><br>
         <button class="form-button" type="generate_chords_by_settings" name="submit" class="learn-more">Generate Chord Progression</button>

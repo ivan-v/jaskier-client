@@ -1,23 +1,25 @@
+console.log('bnoopi')
+
 function main() {
 
-    const element = document.getElementById('chord progressions');
+    // const element = document.getElementById('chord progressions');
 
     const play_button = document.getElementById('playpause');
     play_button.checked = 'checked';
 
-    element.addEventListener('change', (event) => {
-        const result = document.getElementById('result');
-        const label = document.getElementById('scale_label');
-         // = `You like ${event.target.value}`;
-        if (element.value === 'Simple') {
-            result.style.visibility = 'visible';
-            scale_label.style.visibility = 'visible';
-        } else {
-            result.style.visibility = 'hidden';
-            scale_label.style.visibility = 'hidden';
-            result.display = 'none';
-        }
-    });
+    // element.addEventListener('change', (event) => {
+    //     const result = document.getElementById('result');
+    //     const label = document.getElementById('scale_label');
+    //      // = `You like ${event.target.value}`;
+    //     if (element.value === 'Simple') {
+    //         result.style.visibility = 'visible';
+    //         scale_label.style.visibility = 'visible';
+    //     } else {
+    //         result.style.visibility = 'hidden';
+    //         scale_label.style.visibility = 'hidden';
+    //         result.display = 'none';
+    //     }
+    // });
 
     // Keeping the "Level of Detail" slider setting saved in localStorage
     const detail = document.getElementById('detail');
@@ -144,7 +146,8 @@ function main() {
 }
 
 function filter_form(detail, det_level_label, pro, advanced) {
-    
+    console.log('aop')
+
     let l_a = advanced.length;
     let l_p = pro.length;
 
