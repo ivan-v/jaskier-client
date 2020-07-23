@@ -1,5 +1,5 @@
 :root {
-  --button-color: cyan;
+  --button-color: #3ca0e7;
   --button-color_hover: white;
 }
 
@@ -145,7 +145,7 @@ p {
 
 .midi-link {
   border: 1px solid var(--button-color);
-  color: var(--button-color);
+  color: #3ca0e7;
   padding: 1rem;
   text-decoration: none;
 }
