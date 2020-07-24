@@ -2,24 +2,8 @@ console.log('bnoopi')
 
 function main() {
 
-    // const element = document.getElementById('chord progressions');
-
     const play_button = document.getElementById('playpause');
     play_button.checked = 'checked';
-
-    // element.addEventListener('change', (event) => {
-    //     const result = document.getElementById('result');
-    //     const label = document.getElementById('scale_label');
-    //      // = `You like ${event.target.value}`;
-    //     if (element.value === 'Simple') {
-    //         result.style.visibility = 'visible';
-    //         scale_label.style.visibility = 'visible';
-    //     } else {
-    //         result.style.visibility = 'hidden';
-    //         scale_label.style.visibility = 'hidden';
-    //         result.display = 'none';
-    //     }
-    // });
 
     // Keeping the "Level of Detail" slider setting saved in localStorage
     const detail = document.getElementById('detail');
@@ -90,10 +74,7 @@ function main() {
     console.log(midi_url)
     MIDIjs.play(midi_url);
 
-
-
     const my_message_div = document.getElementById("status");
-    // const content = my_message_div.innerHTML 
 
     // Define a function to handle status messages
     function display_message(mes) {
@@ -137,8 +118,7 @@ function main() {
 
     const a = document.createElement('a');
     a.append('Download the MIDI file');
-    //a.href = 'https://modern-bard.uk.r.appspot.com/';
-    a.href = "https://modern-bard.uk.r.appspot.com/song?";
+    a.href = midi_url;
     a.classList.add('midi-link');
 
     document.body.append(a);
