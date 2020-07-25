@@ -126,7 +126,6 @@ function main() {
 }
 
 function filter_form(detail, det_level_label, pro, advanced) {
-    console.log('aop')
 
     let l_a = advanced.length;
     let l_p = pro.length;
