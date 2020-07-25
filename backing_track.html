@@ -15,9 +15,8 @@
     <li><a href="#">Individual Tools &dtrif;</a>
       <ul class="dropdown">
         <li><a href="/song_generator">Song Generator</a></li>
-        <li><a href="#">Chord Generator</a></li>
         <li><a href="/backing_track_generator">Backing Track Generator</a><li>
-        <li><a href="#">Jazz Imrpoviser</a></li>
+        <li><a href="#">Chord Generator</a></li>
       </ul>
     </li>
     <li><a href="/about">About</a></li>
@@ -25,7 +24,7 @@
   </ul>
   </nav>
   <body>
-    <h1 style="text-decoration: underline; padding-bottom: 25px;">Song Generator</h1>
+    <h1 style="text-decoration: underline; padding-bottom: 25px;">Backing Track Generator</h1>
     <div id="wrapper">
       <div class="playpause">
       <style>
@@ -42,9 +41,15 @@
      <form>
       <input type="range" class="detail" id="detail" name="detail" min="1" max="3">
     </form>
-    <div class="column" style="background-color:#7d7d7d;">
-      <form id="song_gen_form">
-      <h3 style="display: inline;">Key:</h3>
+    <div class="column" style="background-color: #599b;">
+      <form id="backing_track_form">
+       <h3 style='display: inline'><br>Form:</h3>
+       <select id="chord progressions" class="form-selection">
+        <option value="Simple">Simple</option>
+        <option value="Jazzy">Jazzy</option>
+        <option value="Coltrane">Coltrane</option>
+       </select><br>
+      <h3 style="display: inline;"><br>Key:</h3>
       <select id="Key" name="key" class="form-selection" style="margin-top: 10px;">
         <option value="C (B#)">C (B#)</option>
         <option value="C# / Db">C# / Db</option>
@@ -59,26 +64,6 @@
         <option value="A# / Bb">A# / Bb</option>
         <option value="B (Cb)">B (Cb)</option>
       </select> <br>
-      <h3 style="display: inline;"> Scale: </h3>
-      <select id="Scale" name="scale" class="form-selection" style='display: inline;'>
-        <option value="Major (Ionian)">Major (Ionian)</option>
-        <option value="Minor (Aeolian)"> Minor (Aeolian)</option>
-        <option value="Lydian">Lydian</option>
-        <option value="Phrygian">Phrygian</option>
-        <option value="Dorian">Dorian</option>
-        <option value="Mixolydian">Mixolydian</option>
-        <option value="Alaska">Alaska</option>
-        <option value="Jewish">Jewsih</option>
-        <option value="India">India</option>
-        <option value="Spain">Spain</option>
-        <option value="Asian-Bartok">Asian-Bartok</option>
-        <option value="Hungarian-Bartok">Hungarian-Bartok</option>
-        <option value="Pentatonic">Pentatonic</option>
-        <option value="Blues">Blues</option>
-        <option value="Japan">Japan</option>
-        <option value="Peru">Peru</option>
-        <option value="Slavic">Slavic</option>
-      </select>
       <h3 style="display: inline"><br>Meter:</h3>
       <select class="form-selection" name="meter" style="display: inline">
         <option value="(4,4)">(4,4)</option>
@@ -93,21 +78,6 @@
         <option value="(7,8)">(7,8)</option>
         <option value="(9,8)">(9,8)</option>
         <option value="(12,8)">(12,8)</option>
-      </select>
-      <h3 class="medium" style="display: inline;"> <br>Form:</h3>
-      <select class="form-selection medium" name="form" style='display: inline'>
-        <option value="One-part">One-part</option>
-        <option value="Binary">Binary</option>
-        <option value="Ternary">Ternary</option>
-        <option value="Arch">Arch</option>
-        <option value="Sonata">Sonata</option>
-        <option value="Ballad #1" selected>Ballad #1</option>
-        <option value="Ballad #2">Ballad #2</option>
-        <option value="Ballad #3">Ballad #3</option>
-        <option value="Ballad #4">Ballad #4</option>
-        <option value="Ballad #5">Ballad #5</option>
-        <option value="Rondo">Rondo</option>
-        <option value="Verse-Chorus"></option>
       </select>
       <h3 class="" style="display: inline"><br>Instrument:</h3>
       <select class="form-selection" name="instrument" style="display: inline">
@@ -263,25 +233,12 @@
       </select>
       <h3 class="medium"> <br><br>Rhythm intensity, from calm to intense: </h3>
       <input type="range" class="detail medium" id="beat intensity" name="rhythm_pdf" min="0" max="10" style="display: inline;">
-      <h3 class="medium"><br><br> Max # of simultaneous harmonies: </h3>
-      <select id="number_of_hand_motions" class="medium form-selection" name="num_hands" style='display: inline'>
-        <option value="Only Melody">Only Melody</option>
-        <option value="1" selected>1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-      <h3 class="pro" style='display: none;'> <br><br>Max difference in adjacent notes, in # of halfsteps: </h3>
-      <input type="text" class="form-entry pro" name="max_step_size" id="max step size" min="1" max="24" value="13" style='display: none;'>
-      <h3 class="pro" style='display: none;'> <br><br>Range of pitches in melody, in # of halfsteps: </h3>
-      <input type="text" class="form-entry pro" name="pitch_range" id="pitch range mel" min="1" max="50" value="17" style='display: none;'>
       <h3 class="pro" style='display: none;'><br><br> # of repetitions of rhythm in melody: </h3>
       <input type="text" class="form-entry pro" name="rhythm_repetition_in_mel" id="rhythm_repetition_in_mel" min="0" max="99" value="2" style='display: none'>
-      <h3 class="pro" style='display: none;'> <br><br>: # of repetitions in part: </h3>
-      <input type="text" class="form-entry pro" name="repetitions_in_part" id="repetitions_in_part" min="0" max="99" style='display: none' value="1">
-      <h3 class="pro" style='display: none;'> <br><br># of repetitions of chord progression per part: </h3>
-      <input type="text" class="form-entry pro" name="repeat_chord_progression_in_part" id="repeat_chord_progression_in_part" value="0" min="0" max="99" style='display: none'>
-      <h3 class="pro" style='display: none;'><br><br> Slight Jazziness (presense of 7th chords): </h3>
-      <input type="range" class="detail pro" value="0" name="jazziness" id="jazziness" min="0" max="5" style='display: none;'>
+      <h3 class="pro" style='display: none;'><br><br> # of measures per chord: </h3>
+      <input type="text" class="form-entry pro" name="measures_per_chord" id="measures_per_chord" min="0" max="99" value="2" style='display: none'>
+      <h3 class="pro" style='display: none;'> <br><br>: # of repetitions: </h3>
+      <input type="text" class="form-entry pro" name="num_repetitions" id="num_repetitions" min="0" max="99" style='display: none' value="3">
       <h3 class="pro" style='display: none;'><br><br> Tempo: </h3>
       <input type="range" class="detail pro" value="120" id="tempo" name="tempo" min="75" max="170" style='display: none;'>
     <br><br>
