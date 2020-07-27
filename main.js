@@ -49,12 +49,13 @@ function main() {
 
     if (localstorage_url === null) {
         var midi_url = "https://modern-bard.uk.r.appspot.com/";
-    } else if (localstorage_url.charAt(31) === "?") {
-        var midi_url = "https://modern-bard.uk.r.appspot.com/song/";
+    // } else if (localstorage_url.charAt(31) === "?") {
+        // var midi_url = "https://modern-bard.uk.r.appspot.com/song/";
     } else {
         url = window.location.search;
         const form_details = url.replace('?', '');
-        if (window.location.href.includes("backing_track_generator")) {
+        if (window.location.href.includes("backing_track_generator") || 
+            window.location.search.includes("bk")) {
             var midi_url = "https://modern-bard.uk.r.appspot.com/backing_track_gen?" + form_details;
         } else {
             var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
