@@ -106,31 +106,61 @@ function main() {
         }
     });
 
-    const submit_song_gen = document.getElementById("submit_song_gen")
-    submit_song_gen.addEventListener("click", (event) => {
-        
-        console.log('submitting song gen')
+    const url = window.location.search;
+    if (url.includes("song_generator")) {
 
-        const url = window.location.search;
-        const form_details = url.replace('?', '');
-        const play_button_id = document.getElementById("playpause");
+        const submit_song_gen = document.getElementById("submit_song_gen")
+        submit_song_gen.addEventListener("click", (event) => {
+            
+            console.log('submitting song gen')
 
-        var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
-        localStorage.setItem("midi_url", midi_url);
-    });
+            const url = window.location.search;
+            const form_details = url.replace('?', '');
+            const play_button_id = document.getElementById("playpause");
 
-    const submit_backing_gen = document.getElementById("submit_backing_gen")
-    submit_song_gen.addEventListener("click", (event) => {
-        
-        console.log('submitting backing gen!')
-        
-        const url = window.location.search;
-        const form_details = url.replace('?', '');
-        const play_button_id = document.getElementById("playpause");
+            var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
+            localStorage.setItem("midi_url", midi_url);
+        });
+    } else if (url.includes("backing_track_generator")) {
 
-        var midi_url = "https://modern-bard.uk.r.appspot.com/backing_track_gen?" + form_details;
-        localStorage.setItem("midi_url", midi_url);
-    });
+        const submit_backing_gen = document.getElementById("submit_backing_gen")
+        submit_song_gen.addEventListener("click", (event) => {
+            
+            console.log('submitting backing gen!')
+            
+            const url = window.location.search;
+            const form_details = url.replace('?', '');
+            const play_button_id = document.getElementById("playpause");
+
+            var midi_url = "https://modern-bard.uk.r.appspot.com/backing_track_gen?" + form_details;
+            localStorage.setItem("midi_url", midi_url);
+        });
+    } else {
+        const submit_backing_gen = document.getElementById("submit_backing_gen")
+        submit_song_gen.addEventListener("click", (event) => {
+            
+            console.log('submitting backing gen!')
+            
+            const url = window.location.search;
+            const form_details = url.replace('?', '');
+            const play_button_id = document.getElementById("playpause");
+
+            var midi_url = "https://modern-bard.uk.r.appspot.com/backing_track_gen?" + form_details;
+            localStorage.setItem("midi_url", midi_url);
+        });
+        const submit_song_gen = document.getElementById("submit_song_gen")
+        submit_song_gen.addEventListener("click", (event) => {
+            
+            console.log('submitting song gen')
+
+            const url = window.location.search;
+            const form_details = url.replace('?', '');
+            const play_button_id = document.getElementById("playpause");
+
+            var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
+            localStorage.setItem("midi_url", midi_url);
+        });
+    }
 
     const a = document.createElement('a');
     a.append('Download the MIDI file');
