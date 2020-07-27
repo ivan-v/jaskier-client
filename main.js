@@ -54,8 +54,12 @@ function main() {
     } else {
         url = window.location.search;
         const form_details = url.replace('?', '');
-        var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
-        localStorage.setItem("midi_url", midi_url);;
+        if (window.location.href.includes("backing_track_generator")) {
+            var midi_url = "https://modern-bard.uk.r.appspot.com/backing_track_gen?" + form_details;
+        } else {
+            var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
+            localStorage.setItem("midi_url", midi_url);
+        }
     }
 
 
