@@ -106,7 +106,7 @@ function main() {
         }
     });
 
-    let url = window.location.search;
+    url = window.location.search;
     if (url.includes("song_generator")) {
 
         const submit_song_gen = document.getElementById("submit_song_gen")
@@ -114,7 +114,7 @@ function main() {
             
             console.log('submitting song gen')
 
-            let url = window.location.search;
+            url = window.location.search;
             const form_details = url.replace('?', '');
             const play_button_id = document.getElementById("playpause");
 
@@ -128,7 +128,7 @@ function main() {
             
             console.log('submitting backing gen!')
             
-            let url = window.location.search;
+            url = window.location.search;
             const form_details = url.replace('?', '');
             const play_button_id = document.getElementById("playpause");
 
@@ -141,7 +141,7 @@ function main() {
             
             console.log('submitting backing gen!')
             
-            let url = window.location.search;
+            url = window.location.search;
             const form_details = url.replace('?', '');
             const play_button_id = document.getElementById("playpause");
 
@@ -153,7 +153,7 @@ function main() {
             
             console.log('submitting song gen')
 
-            let url = window.location.search;
+            url = window.location.search;
             const form_details = url.replace('?', '');
             const play_button_id = document.getElementById("playpause");
 
