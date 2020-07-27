@@ -45,6 +45,8 @@ function main() {
 
     // To determine where the play button gets the midi file from
     // TODO: also link the download button accordingly
+    let url = window.location.search;
+
     let localstorage_url = localStorage.getItem("midi_url");
 
     if (localstorage_url === null) {
@@ -52,14 +54,14 @@ function main() {
     } else if (localstorage_url.charAt(31) === "?") {
         var midi_url = "https://modern-bard.uk.r.appspot.com/song/";
     } else {
-        let url = window.location.search;
+        url = window.location.search;
         const form_details = url.replace('?', '');
         var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
         localStorage.setItem("midi_url", midi_url);;
     }
 
 
-    let url = window.location.search;
+    url = window.location.search;
     const form_details = url.replace('?', '');
     const params = new URLSearchParams(form_details)
     params.forEach(function(val, key) {
