@@ -1,5 +1,3 @@
-console.log('bnoopi')
-
 function main() {
 
     const play_button = document.getElementById('playpause');
@@ -108,8 +106,7 @@ function main() {
         }
     });
 
-    url = window.location.search;
-    if (url.includes("song_generator")) {
+    if (window.location.href.includes("song_generator")) {
 
         const submit_song_gen = document.getElementById("submit_song_gen")
         submit_song_gen.addEventListener("click", (event) => {
@@ -123,7 +120,7 @@ function main() {
             var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
             localStorage.setItem("midi_url", midi_url);
         });
-    } else if (url.includes("backing_track_generator")) {
+    } else if (window.location.href.includes("backing_track_generator")) {
 
         const submit_backing_gen = document.getElementById("submit_backing_gen")
         submit_song_gen.addEventListener("click", (event) => {
