@@ -72,7 +72,7 @@ function main() {
     // MIDI.js logic for the play/pause button
     const play_button_id = document.getElementById("playpause");
     console.log(midi_url)
-    MIDIjs.play(midi_url);
+    // MIDIjs.play(midi_url);
 
     const my_message_div = document.getElementById("status");
 
@@ -89,7 +89,7 @@ function main() {
     MIDIjs.message_callback = display_message;
 
 
-    MIDIjs.pause()
+    // MIDIjs.pause()
 
     play_button_id.value = "1";
     play_button_id.addEventListener("change", (event) => {
