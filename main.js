@@ -123,7 +123,7 @@ function main() {
     } else if (window.location.href.includes("backing_track_generator")) {
 
         const submit_backing_gen = document.getElementById("submit_backing_gen")
-        submit_song_gen.addEventListener("click", (event) => {
+        submit_backing_gen.addEventListener("click", (event) => {
             
             console.log('submitting backing gen!')
             
