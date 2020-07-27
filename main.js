@@ -116,6 +116,16 @@ function main() {
         localStorage.setItem("midi_url", midi_url);
     });
 
+    const submit_backing_gen = document.getElementById("submit_backing_gen")
+    submit_song_gen.addEventListener("click", (event) => {
+        const url = window.location.search;
+        const form_details = url.replace('?', '');
+        const play_button_id = document.getElementById("playpause");
+
+        var midi_url = "https://modern-bard.uk.r.appspot.com//backing_track_gen?" + form_details;
+        localStorage.setItem("midi_url", midi_url);
+    });
+
     const a = document.createElement('a');
     a.append('Download the MIDI file');
     a.href = midi_url;
