@@ -108,6 +108,9 @@ function main() {
 
     const submit_song_gen = document.getElementById("submit_song_gen")
     submit_song_gen.addEventListener("click", (event) => {
+        
+        console.log('submitting song gen')
+
         const url = window.location.search;
         const form_details = url.replace('?', '');
         const play_button_id = document.getElementById("playpause");
@@ -118,11 +121,14 @@ function main() {
 
     const submit_backing_gen = document.getElementById("submit_backing_gen")
     submit_song_gen.addEventListener("click", (event) => {
+        
+        console.log('submitting backing gen!')
+        
         const url = window.location.search;
         const form_details = url.replace('?', '');
         const play_button_id = document.getElementById("playpause");
 
-        var midi_url = "https://modern-bard.uk.r.appspot.com//backing_track_gen?" + form_details;
+        var midi_url = "https://modern-bard.uk.r.appspot.com/backing_track_gen?" + form_details;
         localStorage.setItem("midi_url", midi_url);
     });
 
