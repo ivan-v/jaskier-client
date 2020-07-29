@@ -57,9 +57,11 @@ function main() {
         if (window.location.href.includes("backing_track_generator") || 
             window.location.search.includes("bk")) {
             var midi_url = "https://modern-bard.uk.r.appspot.com/backing_track_gen?" + form_details;
-        } else {
+        } else if (window.location.search.includes("rhythm_repetition_in_mel")) {
             var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
             localStorage.setItem("midi_url", midi_url);
+        } else {
+            var midi_url = "https://modern-bard.uk.r.appspot.com/"
         }
     }
 
@@ -111,54 +113,39 @@ function main() {
         }
     });
 
-    async function fetchTest(url) {
-        let response = await fetch(url);
-        let responseText = await getTextFromStream(response.body);
-        
-        document.getElementById('result').innerHTML = responseText;
-    }
-
-    async function getTextFromStream(readableStream) {
-        let reader = readableStream.getReader();
-        let utf8Decoder = new TextDecoder();
-        let nextChunk;
-        
-        let resultStr = '';
-        
-        while (!(nextChunk = await reader.read()).done) {
-            let partialData = nextChunk.value;
-            resultStr += utf8Decoder.decode(partialData);
-        }
-        
-        return resultStr;
-    }
-
-
     const gen_chord_prog = document.getElementById("gen_chord_prog")
     gen_chord_prog.addEventListener("click", (event) => {
 
         url = window.location.search;
         const form_details = url.replace('?', '');
-
-        let chord_gen_url = "https://modern-bard.uk.r.appspot.com/chord_prog_gen?" + form_details;
-
-
-        let chord_gen = fetchTest(chord_gen_url).then(function() {
-            localStorage.setItem("chord_gen", chord_gen);
-            document.getElementById('your_chord_progression').style.visibility = 'visible';
-            document.getElementById('chord_gen_result').textContent = chord_gen;
-            console.log(chord_gen);
-        });
-
+        var chord_gen_url = "https://modern-bard.uk.r.appspot.com/chord_prog_gen?" + form_details;
+        localStorage.setItem("chord_gen_url", chord_gen_url);
     });
 
-    let localstorage_chord_gen = localStorage.getItem('chord_gen');
-
-    if (localstorage_chord_gen !== null) {
-        document.getElementById('your_chord_progression').style.visibility = 'visible';
-        document.getElementById('chord_gen_result').textContent = localstorage_chord_gen;
+    if (window.location.search.includes("cp-")) {
+        url = window.location.search;
+        const form_details = url.replace('?', '');
+        var chord_gen_url = "https://modern-bard.uk.r.appspot.com/chord_prog_gen?" + form_details;
+        localStorage.setItem("chord_gen_url", chord_gen_url);
     }
-    
+
+    let localstorage_chord_gen_url = localStorage.getItem('chord_gen_url');
+    let localstorage_chord_prog = localStorage.getItem('chord_prog');
+
+    if (localstorage_chord_prog !== null && localstorage_chord_gen_url === "old") {
+        document.getElementById('your_chord_progression').style.visibility = 'visible';
+        document.getElementById('chord_gen_result').textContent = localstorage_chord_prog;
+    } else if (localstorage_chord_gen_url !== null) {
+        fetch(localstorage_chord_gen_url)
+        .then(res => res.json())
+        .then((out) => {
+            document.getElementById('your_chord_progression').style.visibility = 'visible';
+            document.getElementById('chord_gen_result').textContent = out;
+            localStorage.setItem('chord_prog', out);
+            localStorage.setItem("chord_gen_url", "old");
+        })
+    }
+
 
     if (window.location.href.includes("song_generator")) {
 
