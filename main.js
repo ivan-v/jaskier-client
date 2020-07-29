@@ -139,7 +139,8 @@ function main() {
         fetch(localstorage_chord_gen_url)
         .then(res => res.json())
         .then((out) => {
-            document.getElementById('your_chord_progression').style.visibility = 'visible';
+            document.getElementById('your_chord_progression').style.display = 'inline';
+            document.getElementById('chord_gen_result').style.display = 'inline';
             document.getElementById('chord_gen_result').textContent = out;
             localStorage.setItem('chord_prog', out);
             localStorage.setItem("chord_gen_url", "old");
