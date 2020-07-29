@@ -111,12 +111,30 @@ function main() {
         }
     });
 
+    const gen_chord_prog = document.getElementById("gen_chord_prog")
+    gen_chord_prog.addEventListener("click", (event) => {
+
+        url = window.location.search;
+        const form_details = url.replace('?', '');
+
+        var chord_gen = "https://modern-bard.uk.r.appspot.com/chord_prog_gen?" + form_details;
+        localStorage.setItem("chord_gen", chord_gen);
+        document.getElementById('your_chord_progression').style.visibility = 'visible';
+        document.getElementById('chord_gen_result').textContent = chord_gen;
+    });
+
+    let localstorage_chord_gen = localStorage.getItem('chord_gen');
+
+    if (localstorage_chord_gen !== null) {
+        document.getElementById('your_chord_progression').style.visibility = 'visible';
+        document.getElementById('chord_gen_result').textContent = chord_gen;
+    }
+    
+
     if (window.location.href.includes("song_generator")) {
 
         const submit_song_gen = document.getElementById("submit_song_gen")
         submit_song_gen.addEventListener("click", (event) => {
-            
-            console.log('submitting song gen')
 
             url = window.location.search;
             const form_details = url.replace('?', '');
@@ -129,8 +147,6 @@ function main() {
 
         const submit_backing_gen = document.getElementById("submit_backing_gen")
         submit_backing_gen.addEventListener("click", (event) => {
-            
-            console.log('submitting backing gen!')
             
             url = window.location.search;
             const form_details = url.replace('?', '');

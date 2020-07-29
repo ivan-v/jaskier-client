@@ -72,15 +72,17 @@
     <div class="row">
       <div class="column" style="background-color:#3f659f;">
         <h2>Generate a chord progression</h2>
+        <h3 id="your_chord_progression" style="visibility: hidden">Your chord progression:</h3>
+        <h3 id="chord_gen_result"></h3>
         <form action="/" id="chord_gen_form">
          <h3 style='display: inline'>Form:</h3>
-          <select id="chord progressions" class="form-selection">
+          <select name="cp-chords_style" class="form-selection">
             <option value="Simple">Simple</option>
             <option value="Jazzy">Jazzy</option>
             <option value="Coltrane">Coltrane</option>
           </select><br>
         <h3 style='display: inline' >Key:</h3>
-        <select id="chords_key" name="chords_key" class="form-selection">
+        <select id="cp_key" name="cp-key" class="form-selection">
           <option value="C (B#)">C (B#)</option>
           <option value="C# / Db">C# / Db</option>
           <option value="D">D</option>
@@ -95,7 +97,7 @@
           <option value="B (Cb)">B (Cb)</option>
         </select> <br>
         <h3 id="scale_label" class= "scale_label" style='visibility: visible; display: inline;'> Scale: </h3>
-        <select id="scale" class="result" style='visibility: visible; display: inline;'>
+        <select name="cp-scale" class="result medium">
           <option value="Major (Ionian)">Major (Ionian)</option>
           <option value="Minor (Aeolian)"> Minor (Aeolian)</option>
           <option value="Lydian">Lydian</option>
@@ -115,10 +117,10 @@
           <option value="Slavic">Slavic</option>
         </select><br>
         <h3 class="medium"><br> Repetitions of each chord before the next </h3>
-        <input type="text" value="0" class="form-entry medium" id="repetitions of each chord" min="0" max="99" style='display: inline'>
+        <input type="text" value="0" class="form-entry medium" name="cp-chord_repetitions" min="0" max="99" style='display: inline'>
         <h3 style='display: inline'><br><br>Repetitions of sequence:</h3>
-        <input type="text" class="form-entry" id="chord repetitions" value="2" min="1" max="99" style='display: inline'><br><br>
-        <button class="form-button" type="generate_chords_by_settings" name="submit" class="learn-more">Generate Chord Progression</button>
+        <input type="text" class="form-entry" name="cp-repetitions_of_sequence" value="0" min="0" max="99" style='display: inline'><br><br>
+        <button class="form-button" type="submit" id="gen_chord_prog" name="generate_chords_by_settings" class="learn-more">Generate Chord Progression</button>
         </form>
 
       </div>
@@ -571,7 +573,7 @@
       <h3 class="medium" style='display: none;'> <br><br># of repetitions (total length): </h3>
       <input type="text" class="form-entry medium" name="bk-num_repetitions" id="bk-num_repetitions" min="0" max="99" style='display: none' value="3">
       <h3 class="pro" style='display: none;'><br><br> Tempo: </h3>
-      <input type="range" class="detail pro" value="120" id="bk-tempo" name="bk-tempo" min="75" max="170" style='display: none;'>
+      <input type="range" class="detail pro" value="120" id="bk-tempo" name="bk-tempo" min="55" max="220" style='display: none;'>
     <br><br>
     <button class="form-button" type="submit" id="submit_backing_gen">Apply Settings</button>
   </form>
