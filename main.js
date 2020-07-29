@@ -147,6 +147,7 @@ function main() {
             localStorage.setItem("chord_gen", chord_gen);
             document.getElementById('your_chord_progression').style.visibility = 'visible';
             document.getElementById('chord_gen_result').textContent = chord_gen;
+            console.log(chord_gen);
         });
 
     });
