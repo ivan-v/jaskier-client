@@ -111,16 +111,44 @@ function main() {
         }
     });
 
+    async function fetchTest(url) {
+        let response = await fetch(url);
+        let responseText = await getTextFromStream(response.body);
+        
+        document.getElementById('result').innerHTML = responseText;
+    }
+
+    async function getTextFromStream(readableStream) {
+        let reader = readableStream.getReader();
+        let utf8Decoder = new TextDecoder();
+        let nextChunk;
+        
+        let resultStr = '';
+        
+        while (!(nextChunk = await reader.read()).done) {
+            let partialData = nextChunk.value;
+            resultStr += utf8Decoder.decode(partialData);
+        }
+        
+        return resultStr;
+    }
+
+
     const gen_chord_prog = document.getElementById("gen_chord_prog")
     gen_chord_prog.addEventListener("click", (event) => {
 
         url = window.location.search;
         const form_details = url.replace('?', '');
 
-        var chord_gen = "https://modern-bard.uk.r.appspot.com/chord_prog_gen?" + form_details;
-        localStorage.setItem("chord_gen", chord_gen);
-        document.getElementById('your_chord_progression').style.visibility = 'visible';
-        document.getElementById('chord_gen_result').textContent = chord_gen;
+        let chord_gen_url = "https://modern-bard.uk.r.appspot.com/chord_prog_gen?" + form_details;
+
+
+        let chord_gen = fetchTest(chord_gen_url).then(function() {
+            localStorage.setItem("chord_gen", chord_gen);
+            document.getElementById('your_chord_progression').style.visibility = 'visible';
+            document.getElementById('chord_gen_result').textContent = chord_gen;
+        });
+
     });
 
     let localstorage_chord_gen = localStorage.getItem('chord_gen');
