@@ -127,7 +127,7 @@ function main() {
 
     if (localstorage_chord_gen !== null) {
         document.getElementById('your_chord_progression').style.visibility = 'visible';
-        document.getElementById('chord_gen_result').textContent = chord_gen;
+        document.getElementById('chord_gen_result').textContent = localstorage_chord_gen;
     }
     
 
