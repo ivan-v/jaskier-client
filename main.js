@@ -1,7 +1,10 @@
 function main() {
 
     const play_button = document.getElementById('playpause');
-    play_button.checked = 'checked';
+
+    if (!window.location.href.includes("chord_progression_generator")) {
+        play_button.checked = 'checked';
+    }
 
     // Keeping the "Level of Detail" slider setting saved in localStorage
     const detail = document.getElementById('detail');
@@ -74,48 +77,49 @@ function main() {
         key_id.value = val;
     });
 
+    if (!window.location.href.includes("chord_progression_generator")) {
 
-
-    // MIDI.js logic for the play/pause button
-    const play_button_id = document.getElementById("playpause");
-    console.log(midi_url)
-    MIDIjs.play(midi_url);
-
-    const my_message_div = document.getElementById("status");
-
-    // Define a function to handle status messages
-    function display_message(mes) {
-        if (mes.includes("Loading")) {
-            my_message_div.innerHTML = "Loading...";
-        } else {
-            my_message_div.innerHTML = "Ready to play";
-        }
-    };
-
-    // Set the function as message callback
-    MIDIjs.message_callback = display_message;
-
-
-    MIDIjs.pause()
-
-    play_button_id.value = "1";
-    play_button_id.addEventListener("change", (event) => {
+        // MIDI.js logic for the play/pause button
+        const play_button_id = document.getElementById("playpause");
         console.log(midi_url)
-        if (play_button_id.value === "0") {
-            MIDIjs.play(midi_url);
-            play_button_id.value = "2";
-        } else if (play_button_id.value === "1") {
-            MIDIjs.resume()
-            play_button_id.value = "2";
-        } else {
-            MIDIjs.pause()
-            play_button_id.value = "1";
-        }
-    });
+        MIDIjs.play(midi_url);
 
+        const my_message_div = document.getElementById("status");
+
+        // Define a function to handle status messages
+        function display_message(mes) {
+            if (mes.includes("Loading")) {
+                my_message_div.innerHTML = "Loading...";
+            } else {
+                my_message_div.innerHTML = "Ready to play";
+            }
+        };
+
+        // Set the function as message callback
+        MIDIjs.message_callback = display_message;
+
+
+        MIDIjs.pause()
+    }
+
+    if (!window.location.href.includes("chord_progression")) {
+        play_button_id.value = "1";
+        play_button_id.addEventListener("change", (event) => {
+            console.log(midi_url)
+            if (play_button_id.value === "0") {
+                MIDIjs.play(midi_url);
+                play_button_id.value = "2";
+            } else if (play_button_id.value === "1") {
+                MIDIjs.resume()
+                play_button_id.value = "2";
+            } else {
+                MIDIjs.pause()
+                play_button_id.value = "1";
+            }
+        });
+    }
     const gen_chord_prog = document.getElementById("gen_chord_prog")
     gen_chord_prog.addEventListener("click", (event) => {
-
         url = window.location.search;
         const form_details = url.replace('?', '');
         var chord_gen_url = "https://modern-bard.uk.r.appspot.com/chord_prog_gen?" + form_details;
@@ -144,7 +148,7 @@ function main() {
             document.getElementById('chord_gen_result').textContent = out;
             localStorage.setItem('chord_prog', out);
             localStorage.setItem("chord_gen_url", "old");
-        })
+        });
     }
 
 
@@ -172,7 +176,7 @@ function main() {
             var midi_url = "https://modern-bard.uk.r.appspot.com/backing_track_gen?" + form_details;
             localStorage.setItem("midi_url", midi_url);
         });
-    } else {
+    } else if (!window.location.href.includes("chord_progression")) {
         const submit_backing_gen = document.getElementById("submit_backing_gen")
         submit_backing_gen.addEventListener("click", (event) => {
             
