@@ -21,21 +21,22 @@
       </ul>
     </li>
     <li><a href="/about">About</a></li>
-    <li><a href="#" class="rightmost-navigation">Contact&nbsp; &nbsp; &nbsp; &nbsp;</a></li>
+    <li><a href="/ottaviano">Ottaviano</a></li>
+    <li><a href="/contact" class="rightmost-navigation">Contact&nbsp; &nbsp; &nbsp; &nbsp;</a></li>
   </ul>
   </nav>
   <body>
+  	<div class="column" style="background-color:#3f659f;">
+  		<h1 style="text-decoration: underline; padding-bottom: 25px;">Chord Progression Generator</h1>
   	<h3 style='display: inline; margin-bottom: -10px;'>Level of Detail:</h3>
      <p class="detail_level" id="detail_level" style='text-align: center;'></p>
      <form>
       <input type="range" class="detail" id="detail" name="detail" min="1" max="3">
     </form> 
-  	<div class="column" style="background-color:#3f659f;">
-  		<h1 style="text-decoration: underline; padding-bottom: 25px;">Chord Progression Generator</h1>
         <h3 id="your_chord_progression" style="display: none;">Your chord progression:<br></h3>
         <h3 id="chord_gen_result" style="display: none;"></h3>
         <form action="/chord_progression_generator" id="chord_gen_form">
-         <h3 style='display: inline'>Form:</h3>
+         <h3 style='display: inline'><br>Form:</h3>
           <select name="cp-chords_style" class="form-selection">
             <option value="Simple">Simple</option>
             <option value="Jazzy">Jazzy</option>

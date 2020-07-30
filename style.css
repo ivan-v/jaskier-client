@@ -3,6 +3,19 @@
   --button-color_hover: white;
 }
 
+
+
+.coffee-link {
+  text-decoration: none;
+  color: white;
+}
+
+.coffee-link:hover {
+  color:#3ca0e7;
+  text-decoration: underline;
+}
+
+
 /* Navigation bar \/ */
 
 primary-navigation {
