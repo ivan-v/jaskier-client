@@ -80,7 +80,7 @@ function main() {
     if (!window.location.href.includes("chord_progression_generator")) {
 
         // MIDI.js logic for the play/pause button
-        const play_button_id = document.getElementById("playpause");
+        var play_button_id = document.getElementById("playpause");
         console.log(midi_url)
         MIDIjs.play(midi_url);
 
@@ -105,7 +105,6 @@ function main() {
     if (!window.location.href.includes("chord_progression")) {
         play_button_id.value = "1";
         play_button_id.addEventListener("change", (event) => {
-            console.log(midi_url)
             if (play_button_id.value === "0") {
                 MIDIjs.play(midi_url);
                 play_button_id.value = "2";
