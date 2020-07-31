@@ -379,10 +379,31 @@
         <div id="wrapper">
       <form id="backing_track_form">
        <h3 style='display: inline'><br>Form:</h3>
-       <select id="style" name="bk-style" class="form-selection">
+       <select id="bk-style" name="bk-style" class="form-selection">
         <option value="Simple">Simple</option>
         <option value="Jazzy">Jazzy</option>
         <option value="Coltrane">Coltrane</option>
+       </select>
+       <h3 id="bk-scale-label" style='display: none'><br>Scale:</h3>
+       <select id="bk-scale" name="bk-scale" class="form-selection" style='display: none'>
+        <option value="Major (Ionian)">Major (Ionian)</option>
+        <option value="Minor (Aeolian)"> Minor (Aeolian)</option>
+        <option value="Lydian">Lydian</option>
+        <option value="Dorian">Dorian</option>
+        <option value="Phrygian">Phrygian</option>
+        <option value="Dorian">Dorian</option>
+        <option value="Mixolydian">Mixolydian</option>
+        <option value="Alaska">Alaska</option>
+        <option value="Jewish">Jewsih</option>
+        <option value="India">India</option>
+        <option value="Spain">Spain</option>
+        <option value="Asian-Bartok">Asian-Bartok</option>
+        <option value="Hungarian-Bartok">Hungarian-Bartok</option>
+        <option value="Pentatonic">Pentatonic</option>
+        <option value="Blues">Blues</option>
+        <option value="Japan">Japan</option>
+        <option value="Peru">Peru</option>
+        <option value="Slavic">Slavic</option>
        </select>
       <h3 style="display: inline;"><br>Key:</h3>
       <select id="Key" name="bk-key" class="form-selection" style="margin-top: 10px;">
@@ -567,7 +588,7 @@
         </optgroup>
       </select>
       <h3 class="medium"> <br><br>Rhythm intensity, from calm to intense: </h3>
-      <input type="range" class="detail medium" id="beat intensity" name="bk-rhythm_pdf" min="0" max="10" style="display: inline;">
+      <input type="range" class="detail medium" id="bk-rhythm_pdf" name="bk-rhythm_pdf" min="0" max="10" style="display: inline;">
       <h3 class="pro" style='display: none;'><br><br> # of measures per chord: </h3>
       <input type="text" class="form-entry pro" name="bk-measures_per_chord" id="bk-measures_per_chord" min="0" max="99" value="2" style='display: none'>
       <h3 class="medium" style='display: none;'> <br><br># of repetitions (total length): </h3>

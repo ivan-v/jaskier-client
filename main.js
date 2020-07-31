@@ -153,7 +153,7 @@ function main() {
 
     if (window.location.href.includes("song_generator")) {
 
-        const submit_song_gen = document.getElementById("submit_song_gen")
+        const submit_song_gen = document.getElementById("submit_song_gen");
         submit_song_gen.addEventListener("click", (event) => {
 
             url = window.location.search;
@@ -201,6 +201,20 @@ function main() {
             localStorage.setItem("midi_url", midi_url);
         });
     }
+
+    const bk_style = document.getElementById("bk-style");
+    const bk_scale = document.getElementById("bk-scale");
+    const bl_scale_label = document.getElementById("bk-scale-label");
+    bk_style.addEventListener("change", (event) => {
+        if (bk_style.value === "Simple") {
+            bk_scale.style.display = "inline";
+            bl_scale_label.style.display = "inline";
+        } else {
+            bk_scale.style.display = "none";
+            bl_scale_label.style.display = "none";
+        } 
+    });
+
 
     const a = document.createElement('a');
     a.append('Download the MIDI file');
