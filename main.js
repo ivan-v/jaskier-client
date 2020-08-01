@@ -64,7 +64,7 @@ function main() {
             var midi_url = "https://modern-bard.uk.r.appspot.com/song_gen?" + form_details;
             localStorage.setItem("midi_url", midi_url);
         } else {
-            var midi_url = "https://modern-bard.uk.r.appspot.com/"
+            var midi_url = "https://modern-bard.uk.r.appspot.com/";
         }
     }
 
@@ -99,10 +99,8 @@ function main() {
         MIDIjs.message_callback = display_message;
 
 
-        MIDIjs.pause()
-    }
-
-    if (!window.location.href.includes("chord_progression")) {
+        MIDIjs.pause();
+    
         play_button_id.value = "1";
         play_button_id.addEventListener("change", (event) => {
             if (play_button_id.value === "0") {
@@ -179,8 +177,6 @@ function main() {
         const submit_backing_gen = document.getElementById("submit_backing_gen")
         submit_backing_gen.addEventListener("click", (event) => {
             
-            console.log('submitting backing gen!')
-            
             url = window.location.search;
             const form_details = url.replace('?', '');
             const play_button_id = document.getElementById("playpause");
@@ -190,8 +186,6 @@ function main() {
         });
         const submit_song_gen = document.getElementById("submit_song_gen")
         submit_song_gen.addEventListener("click", (event) => {
-            
-            console.log('submitting song gen')
 
             url = window.location.search;
             const form_details = url.replace('?', '');
