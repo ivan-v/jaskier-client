@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Piano Scribe</title>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script type="text/javascript" src="wildwebmidi.js"></script>
+        <script type="text/javascript" src="midiplayer.js"></script>
+
+        <script src="audiosynth.js"></script>
+        <script src="https://www.verovio.org/javascript/latest/verovio-toolkit.js"></script>
+        <script src="playKeyboard.js"></script>
+
+        <link rel="stylesheet" href="piano-scribe_style.css">
+    </head>
+    <nav role="navigation" class="primary-navigation">
+      <ul>
+        <li><a href="https://virtualbard.com/">Home</a></li>
+        <li><a href="#">Individual Tools &dtrif;</a>
+          <ul class="dropdown">
+            <li><a href="/chord_progression_generator">Chord Progression Generator</a></li>
+            <li><a href="/song_generator">Song Generator</a></li>
+            <li><a href="/backing_track_generator">Backing Track Generator</a></li>
+            <li><a href="/piano_scribe">Piano Scribe</a></li>
+          </ul>
+        </li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/ottaviano">Ottaviano</a></li>
+        <li><a href="/contact" class="rightmost-navigation">Contact&nbsp; &nbsp; &nbsp; &nbsp;</a></li>
+      </ul>
+    </nav>
+    <body>
+        <!-- Note duration selector: -->
+        <div id="NoteSelection" class="NoteClefSelection">
+            <input type="radio" name="notes" id="note-1-1" value="1">
+            <label for="note-1-1" >1/1</label>
+            <input type="radio" name="notes" id="note-1-2" value="2">
+            <label for="note-1-2" >1/2</label>
+            <input type="radio" name="notes" id="note-1-4" checked value="4">
+            <label for="note-1-4" >1/4</label>
+            <input type="radio" name="notes" id="note-1-8" value="8">
+            <label for="note-1-8" >1/8</label>
+            <input type="radio" name="notes" id="note-1-16" value="6">
+            <label for="note-1-16" >1/16</label>
+            <input type="radio" name="notes" id="note-1-32" value="3">
+            <label for="note-1-32" >1/32</label>
+        </div>
+
+        <!-- Build the interactive piano keyboard: -->
+        <div id='keyboard'></div>
+        <script type="text/javascript">playKeyboard()</script>
+
+        <!-- For the transcribed notes: -->
+        <div id="svgNotesContainer"></div>
+
+        <!-- For the MIDI input: -->
+        <div id="screen-wrapper" muted="muted">   
+            <div id="screens" muted="muted">
+                <div class="screen step0" muted="muted"></div>
+            </div>
+        </div>
+
+        <!-- For playback, once notes have been put in: -->
+        <div style="position: absolute; margin-top: 270px; margin-right: auto; margin-left: 37%;">
+            <a id="startPlayingButton" href="javascript:startPlaying();">Click to play!</a>
+            <div id="player"></div>
+        </div>
+
+        <script type="text/javascript">
+            let isPlaying = false;
+            let page = 1;
+            let ids = [];
+
+            // mainly to flag the playing notes to be red
+            let midiUpdate = function(time) {
+                let vrvTime = Math.max(0, time - 400);
+                let elementsattime = verovioToolkit.getElementsAtTime(vrvTime);
+                if (elementsattime.page > 0) {
+                    if (elementsattime.page != page) {
+                        page = elementsattime.page;
+                        loadPage();
+                    }
+                    if ((elementsattime.notes.length > 0) && (ids != elementsattime.notes)) {
+                        ids.forEach(function(noteid) {
+                            if ($.inArray(noteid, elementsattime.notes) === -1) {
+                                $("#" + noteid).attr("fill", "#000").attr("stroke", "#000"); 
+                            }
+                        });
+                        ids = elementsattime.notes;
+                        ids.forEach(function(noteid) {
+                            if ($.inArray(noteid, elementsattime.notes) != -1) {
+                                $("#" + noteid).attr("fill", "#c00").attr("stroke", "#c00");; 
+                            }
+                        }); 
+                    }
+                }
+            }
+
+            let midiStop = function() {
+                ids.forEach(function(noteid) {
+                    $("#" + noteid).attr("fill", "#000").attr("stroke", "#000"); 
+                });
+                $("#player").hide();
+                isPlaying = false;
+            }
+            
+            function startPlaying() {
+                if (isPlaying == false) {
+                    let songToPlay = localStorage.getItem("song");
+                    $("#player").show();
+                    $("#player").midiPlayer.play(songToPlay);
+                    isPlaying = true;
+                }
+            }
+
+            // hitting "enter" triggers playing 
+            $(window).keyup(function(event){
+                if (event.keyCode === 13) {
+                    startPlaying();
+                }
+            });
+
+            // on page refresh, clear localStorage song
+            $(document).ready(function() {
+                localStorage.setItem("song", "");
+                $("#player").midiPlayer({
+                    color: "red",
+                    onUpdate: midiUpdate,
+                    onStop: midiStop,
+                    width: 100
+                });
+          });
+        </script>
+  </body>
+</html>
