@@ -298,26 +298,26 @@ function playKeyboard() {
 	// To render the notes recorded
 	function paeCodeRender(paeCode, clef, width, scalePercent) {
 	    if (typeof(clef)==='undefined') clef = 'G-2';
-	    if (typeof(width)==='undefined') width = document.body.clientWidth;
-	    if (typeof(scalePercent)==='undefined') scalePercent = 20;
+	    if (typeof(scalePercent)==='undefined') scalePercent = 80;
 
 	    let data = "@clef:" + clef + "\n";
 	    data += "@keysig:" + " " + "\n";
 	    data += "@timesig:" + " " + "\n";
 	    data += "@data:" + paeCode;
 
-	    let pageWidth = width;
-	    let options = JSON.stringify({
-	        inputFormat: 'pae',
-	        pageHeight: 500,
+	    let zoom = 80;
+		let pageHeight = $(document).height() * 100 / zoom ;
+        let pageWidth = $(window).width() * 90 / zoom ;
+
+	    options = {
+	        pageHeight: pageHeight,
 	        pageWidth: pageWidth,
-	        ignoreLayout: 1,
-	        border: 0,
+	        pageMarginRight: 100,
 	        scale: scalePercent,
-	        adjustPageHeight: 1
-	    });
+	        adjustPageHeight: true
+	    }
 
-
+	    verovioToolkit.setOptions(options);
 	    let notesSVG = verovioToolkit.renderData(data, options);
 
 	    let midiFile = verovioToolkit.renderToMIDI();
@@ -366,7 +366,24 @@ function playKeyboard() {
 		} else {
 			data.push(nicks + noteDuration + octave + note);
 		}
-		let notesSVG = paeCodeRender(data, clef, document.body.clientWidth, 50);
+
+		// TODO: add time options (current only common time)
+		// TODO: fix long notes stuffed in measures (should be a tie)
+		
+		let lastMeasure = data.slice(data.lastIndexOf('/') + 1, data.length - 1);
+
+		let duration = (1.0 / parseInt(noteDuration));
+		
+		for (const note in lastMeasure) {
+			duration += 1.0 / parseInt(lastMeasure[note][lastMeasure[note].length - 3]);
+		}
+
+		if (duration >= 1) {
+			duration = 0;
+			data.push('/');
+		}
+		
+		let notesSVG = paeCodeRender(data, clef, document.body.clientWidth, 80);
 
         //insert thes SVG code into our div
         let svgContainerDiv = $('#svgNotesContainer');
