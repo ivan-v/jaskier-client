@@ -288,9 +288,12 @@ function playKeyboard() {
 	$(window).keyup(function(event){
         if (event.keyCode == 8) {
         	data.pop();
-        	let notesSVG = paeCodeRender(data, 'G-2', 10, 50);
+        	let notesSVG = paeCodeRender(data, 'G-2', document.body.clientWidth, );
 	    	const svgContainerDiv = $('#svgNotesContainer');
 	        svgContainerDiv.html(notesSVG);
+	        // Resize svg
+	        let newHeight = document.getElementById('svgNotesContainer').firstChild.getBoundingClientRect().height;
+	    	document.getElementById('svgNotesContainer').style.height = newHeight + "px";
         }
     });
     
@@ -382,12 +385,16 @@ function playKeyboard() {
 			duration = 0;
 			data.push('/');
 		}
-		
+
 		let notesSVG = paeCodeRender(data, clef, document.body.clientWidth, 80);
 
         //insert thes SVG code into our div
         let svgContainerDiv = $('#svgNotesContainer');
         svgContainerDiv.html(notesSVG);
+
+        // Resize svg
+        let newHeight = document.getElementById('svgNotesContainer').firstChild.getBoundingClientRect().height;
+	    document.getElementById('svgNotesContainer').style.height = newHeight + "px";
 
 		return container;
 	
