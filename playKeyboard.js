@@ -391,6 +391,8 @@ function playKeyboard() {
 
 		// TODO: add time options (current only common time)
 		
+        let lastMeasure = findLastMeasure(data.slice(0, -1));
+
         let duration = (1.0 / parseInt(noteDuration));
         if (chordInputMode) {
             duration = 0;
