@@ -285,18 +285,28 @@ function playKeyboard() {
 	}
 
 	// Delete previous note if backspace is hit 
-	$(window).keyup(function(event){
+    $(window).keyup(function(event){
         if (event.keyCode == 8) {
-        	data.pop();
-        	let notesSVG = paeCodeRender(data, 'G-2', document.body.clientWidth, );
-	    	const svgContainerDiv = $('#svgNotesContainer');
-	        svgContainerDiv.html(notesSVG);
-	        // Resize svg
-	        let newHeight = document.getElementById('svgNotesContainer').firstChild.getBoundingClientRect().height;
-	    	document.getElementById('svgNotesContainer').style.height = newHeight + "px";
+            if (data.length > 1 && data[data.length - 2][data[data.length - 2].length - 2] === '+') {
+                data.pop();
+            }
+            data.pop();
+            let notesSVG = paeCodeRender(data, 'G-2', document.body.clientWidth, );
+            const svgContainerDiv = $('#svgNotesContainer');
+            svgContainerDiv.html(notesSVG);
+            let newHeight = document.getElementById('svgNotesContainer').firstChild.getBoundingClientRect().height;
+            document.getElementById('svgNotesContainer').style.height = newHeight + "px";
         }
     });
     
+    function findLastMeasure(data) {
+        for (let i = data.length - 1; i > 0; i--) {
+            if (data[i][data[i].length - 1] === '/') {
+                return data.slice(i + 1);
+            }
+        }
+        return data;
+    }
 
 	// To render the notes recorded
 	function paeCodeRender(paeCode, clef, width, scalePercent) {
@@ -364,27 +374,44 @@ function playKeyboard() {
             noteDuration = selectedRadioBox.val();
         }
 
-		if (note.length > 1) {
-			data.push(nicks + 'x' + noteDuration + octave + note[0]);
-		} else {
-			data.push(nicks + noteDuration + octave + note);
-		}
+		let chordInputMode = document.getElementById('ChordInputMode').checked;
+        let chordInput = ''
+        if (chordInputMode) {
+            chordInput = '^';
+            if (data.length > 0 && data[data.length - 1][data[data.length - 1].length - 1] === '/') {
+                data[data.length - 1] = data[data.length - 1].slice(0, -1);
+            }
+        }
+
+        if (note.length > 1) {
+            data.push(chordInput + nicks + 'x' + noteDuration + octave + note[0]);
+        } else {
+            data.push(chordInput + nicks + noteDuration + octave + note);
+        }
 
 		// TODO: add time options (current only common time)
-		// TODO: fix long notes stuffed in measures (should be a tie)
 		
-		let lastMeasure = data.slice(data.lastIndexOf('/') + 1, data.length - 1);
+		let lastMeasure = findLastMeasure(data.slice(0, -1));
 
-		let duration = (1.0 / parseInt(noteDuration));
-		
-		for (const note in lastMeasure) {
-			duration += 1.0 / parseInt(lastMeasure[note][lastMeasure[note].length - 3]);
-		}
+        let duration = (1.0 / parseInt(noteDuration));
+        let durationBeforeNote = 0;
 
-		if (duration >= 1) {
-			duration = 0;
-			data.push('/');
-		}
+        for (const note in lastMeasure) {
+            durationBeforeNote += 1.0 / parseInt(lastMeasure[note][lastMeasure[note].length - 3]);
+        }
+        duration += durationBeforeNote;
+        if (duration > 1) {
+            let firstDuration = Math.round(1.0 / (1 - durationBeforeNote));
+            let spilloverDuration = Math.round(1.0 / (duration - 1));
+            let firstPart = data[data.length - 1].substr(0, data[data.length - 1].length - 3);
+            let lastPart = data[data.length - 1].substr(data[data.length - 1].length - 3 + 1);
+            data[data.length - 1] = firstPart + firstDuration + lastPart + '+/';
+            data.push(firstPart + spilloverDuration + lastPart);
+        }
+        if (duration === 1) {
+            duration = 0;
+            data[data.length - 1] += '/';
+        }
 
 		let notesSVG = paeCodeRender(data, clef, document.body.clientWidth, 80);
 
