@@ -376,7 +376,7 @@ function playKeyboard() {
 
 		let chordInputMode = document.getElementById('ChordInputMode').checked;
         let chordInput = ''
-        if (chordInputMode) {
+        if (chordInputMode && data.length > 0) {
             chordInput = '^';
             if (data.length > 0 && data[data.length - 1][data[data.length - 1].length - 1] === '/') {
                 data[data.length - 1] = data[data.length - 1].slice(0, -1);
@@ -391,13 +391,16 @@ function playKeyboard() {
 
 		// TODO: add time options (current only common time)
 		
-		let lastMeasure = findLastMeasure(data.slice(0, -1));
-
         let duration = (1.0 / parseInt(noteDuration));
+        if (chordInputMode) {
+            duration = 0;
+        }
         let durationBeforeNote = 0;
 
         for (const note in lastMeasure) {
-            durationBeforeNote += 1.0 / parseInt(lastMeasure[note][lastMeasure[note].length - 3]);
+            if (lastMeasure[note][0] != '^') {
+                durationBeforeNote += 1.0 / parseInt(lastMeasure[note][lastMeasure[note].length - 3]);
+            }
         }
         duration += durationBeforeNote;
         if (duration > 1) {
