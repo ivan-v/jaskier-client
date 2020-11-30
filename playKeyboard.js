@@ -297,7 +297,7 @@ function playKeyboard() {
             let newHeight = document.getElementById('svgNotesContainer').firstChild.getBoundingClientRect().height;
             document.getElementById('svgNotesContainer').style.height = newHeight + "px";
         } else if (event.keyCode === 27) {
-            let modal = document.getElementById("pdfOptionsFrom");
+            let modal = document.getElementById("pdfOptionsForm");
             modal.style.display = "none";
         }
     });
