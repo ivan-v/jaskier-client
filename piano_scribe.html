@@ -8,6 +8,12 @@
         <script type="text/javascript" src="wildwebmidi.js"></script>
         <script type="text/javascript" src="midiplayer.js"></script>
 
+        <script src="https://www.verovio.org/javascript/pdfkit/blobstream.js" type="text/javascript"></script>
+        <script src="https://www.verovio.org/javascript/pdfkit/pdfkit.js" type="text/javascript"></script>
+        <script src="https://www.verovio.org/javascript/pdfkit/source.js" type="text/javascript"></script>
+        <script src="https://www.verovio.org/javascript/pdfkit/vrv-ttf.js" type="text/javascript"></script>
+        <script src="FileSaver.min.js" type="text/javascript"></script>
+
         <script src="audiosynth.js"></script>
         <script src="https://www.verovio.org/javascript/latest/verovio-toolkit.js"></script>
         <script src="playKeyboard.js"></script>
@@ -51,6 +57,32 @@
         <div id="NoteStackSelection" class="NoteClefSelection">
             <input type="checkbox" name="stack" id="ChordInputMode" value="Stacked Input">
             <label for="ChordInputMode">Stacked Input</label>
+        </div>
+
+        <button id="modalButton" class="button">PDF</button>
+        <div id="pdfOptionsForm" class="modal">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="close">&times;</span>
+                    <form>
+                        <div id="format" class="NoteClefSelection">
+                            <input type="radio" name="Format" id="A4" value="1">
+                            <label for="A4" style="margin-left: 10px; margin-right: 20px; width: 100px;">A4</label>
+                            <input type="radio" name="Format" id="US Letter" checked value="2">
+                            <label for="US Letter" style="width: 100px; margin-right: 16px;">US Letter</label><br><br>
+                        </div>
+                    </form>
+                    <form>
+                        <div id="orientation" class="NoteClefSelection">
+                            <input type="radio" name="Format" id="Portrait" checked value="1">
+                            <label for="Portrait" style="margin-right: 20px; width: 100px;">Portrait</label>
+                            <input type="radio" name="Format" id="Landscape" value="2">
+                            <label for="Landscape" style="width: 100px;">Landscape</label><br><br>
+                        </div>
+                    </form>
+                    <button id="downloadPDF" class="button" style="width: 100px; margin-right: 6px;">Download</button>
+                </div>
+            </div>
         </div>
 
         <!-- Build the interactive piano keyboard: -->

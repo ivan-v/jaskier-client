@@ -239,6 +239,95 @@ body {
     color: #eeeeee;
 }
 
+.button {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+.button:active {
+    background: #666666;
+    color: #eeeeee;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #F2F2DE; /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 340px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0
+  } 
+  to {
+    top: 0;
+    opacity: 1
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0
+  } to {
+    top: 0;
+    opacity: 1
+  }
+}
+
+.close {
+  color: ;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-right: -16px;
+}
+
+.close:hover,
+.close:focus {
+  color: #222;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 2px 16px;
+}
 
 #keyboard {
     opacity: 80%;
@@ -316,6 +405,7 @@ body {
     vertical-align: top;
     display: none;
 }
+
 #midiPlayer_div a.icon:after,
 #midiPlayer_div a.icon:before {
     background: #eee;

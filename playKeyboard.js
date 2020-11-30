@@ -285,8 +285,8 @@ function playKeyboard() {
     }
 
     // Delete previous note if backspace is hit 
-    $(window).keyup(function(event){
-        if (event.keyCode == 8) {
+    $(window).keyup(function(event) {
+        if (event.keyCode === 8) {
             if (data.length > 1 && data[data.length - 2][data[data.length - 2].length - 2] === '+') {
                 data.pop();
             }
@@ -296,9 +296,46 @@ function playKeyboard() {
             svgContainerDiv.html(notesSVG);
             let newHeight = document.getElementById('svgNotesContainer').firstChild.getBoundingClientRect().height;
             document.getElementById('svgNotesContainer').style.height = newHeight + "px";
+        } else if (event.keyCode === 27) {
+            let modal = document.getElementById("pdfOptionsFrom");
+            modal.style.display = "none";
         }
     });
     
+    document.getElementById("modalButton").onclick = function(event) {
+        let modal = document.getElementById("pdfOptionsForm");
+        const btn = document.getElementById("modalButton");
+
+        const span = document.getElementsByClassName("close")[0];
+
+        modal.style.display = "block";
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+    }
+
+    document.getElementById("downloadPDF").onclick = function(event) {
+        let pdfFormat = "letter";
+        if (document.getElementById("A4").checked) {
+            pdfFormat = "A4";
+        }
+        let pdfOrientation = "landscape";
+        if (document.getElementById("Portrait").checked) {
+            pdfOrientation = "portrait";
+        }
+        generatePdf(pdfFormat, pdfOrientation);        
+    }
+
+
     function findLastMeasure(data) {
         if (data.toString().split('/').length === 1) {
             return data;
@@ -311,6 +348,7 @@ function playKeyboard() {
         }
     }
 
+    // To correctly display naturals following an accidental
     function isPreviousPitchinBarSharp(pitch, lastMeasure) {
         if (typeof(lastMeasure) === 'undefined') {
             return false;
@@ -345,7 +383,8 @@ function playKeyboard() {
             pageWidth: pageWidth,
             pageMarginRight: 100,
             scale: scalePercent,
-            adjustPageHeight: true
+            adjustPageHeight: true,
+            mmOutput: false,
         }
 
         verovioToolkit.setOptions(options);
@@ -442,19 +481,63 @@ function playKeyboard() {
             data[data.length - 1] += '/';
         }
 
-        let notesSVG = paeCodeRender(data, clef, document.body.clientWidth, 80);
-
-        //insert thes SVG code into our div
+        let notesSVG = paeCodeRender(data, clef, document.body.clientWidth, );
+        
+        // insert thes SVG code into our div
         let svgContainerDiv = $('#svgNotesContainer');
         svgContainerDiv.html(notesSVG);
-
+        
         // Resize svg
         let newHeight = document.getElementById('svgNotesContainer').firstChild.getBoundingClientRect().height;
         document.getElementById('svgNotesContainer').style.height = newHeight + "px";
-
         return container;
     
     };
+
     window.addEventListener('keydown', fnPlayKeyboard);
     window.addEventListener('keyup', fnRemoveKeyBinding);
+
+    function generatePdf(pdfFormat, pdfOrientation) {
+        
+        const outputFilename = 'output.mei';
+        let pdfSize = [2100, 2970];
+        if (pdfFormat == "letter") pdfSize = [2159, 2794];
+        else if (pdfFormat == "B4") pdfSize = [2500, 3530];
+        
+        const pdfLandscape = pdfOrientation === 'landscape';
+
+        const pdfHeight = pdfLandscape ? pdfSize[0] : pdfSize[1];
+        const pdfWidth = pdfLandscape ? pdfSize[1] : pdfSize[0];
+                
+        var doc = new PDFDocument({useCSS: true, compress: true, autoFirstPage: false, layout: pdfOrientation}); 
+        var stream = doc.pipe(blobStream());
+        
+        stream.on('finish', function() {
+            const blob = stream.toBlob('application/pdf');
+            const pdfFilename = outputFilename.replace(/\.[^\.]+$/, '.pdf');
+            saveAs(blob, pdfFilename);
+        });
+        
+        const buffer = Uint8Array.from(atob(vrvTTF), c => c.charCodeAt(0));
+        doc.registerFont('VerovioText',buffer);  
+        
+        pdfOptions = {
+            adjustPageHeight: false,
+            breaks: "auto",
+            mmOutput: true,
+            footer: "auto",
+            pageHeight: pdfHeight,
+            pageWidth: pdfWidth,
+            scale: 100
+        }
+        
+        verovioToolkit.setOptions(pdfOptions);
+        verovioToolkit.redoLayout();
+        for (i = 0; i < verovioToolkit.getPageCount(); i++) {
+            doc.addPage({size: pdfFormat, layout: pdfOrientation});
+            SVGtoPDF(doc, verovioToolkit.renderToSVG(i + 1, {}), 0, 0, pdfOptions);
+        }
+        
+        doc.end();
+    }
 }
