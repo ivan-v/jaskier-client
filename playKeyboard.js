@@ -312,6 +312,9 @@ function playKeyboard() {
     }
 
     function isPreviousPitchinBarSharp(pitch, lastMeasure) {
+        if (typeof(lastMeasure) === 'undefined') {
+            return false;
+        }
         for (let i = lastMeasure.length - 1; i >= 0; i--) {
             if (lastMeasure[i].slice(-2) === pitch && lastMeasure[i].slice(-4, -3) === 'n') {
                 return false;
