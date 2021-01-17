@@ -8,7 +8,7 @@ For this reason, I've decided to make a few tools for music composition powered 
 ## Future Work
 - [ ] Implement sheet music conversion and export, like I've done [here](https://ivan-v.github.io/carolan-client/index.html) ([source](https://github.com/ivan-v/carolan-client)).
 - [ ] More jazz-related tools
-- [ ] Live-coding tool
+- [ ] Live-coding demo
 - [ ] Live MIDI input, through the same way I've done [here](https://ivan-v.github.io/Piano-Scribe/) ([source](https://github.com/ivan-v/Piano-Scribe)).
 
 ## Author
